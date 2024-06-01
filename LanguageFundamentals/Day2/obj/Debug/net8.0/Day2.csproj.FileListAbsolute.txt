@@ -1,0 +1,14 @@
+C:\LanguageFundamentals\Day2\bin\Debug\net8.0\Day2.exe
+C:\LanguageFundamentals\Day2\bin\Debug\net8.0\Day2.deps.json
+C:\LanguageFundamentals\Day2\bin\Debug\net8.0\Day2.runtimeconfig.json
+C:\LanguageFundamentals\Day2\bin\Debug\net8.0\Day2.dll
+C:\LanguageFundamentals\Day2\bin\Debug\net8.0\Day2.pdb
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.GeneratedMSBuildEditorConfig.editorconfig
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.AssemblyInfoInputs.cache
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.AssemblyInfo.cs
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.csproj.CoreCompileInputs.cache
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.dll
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\refint\Day2.dll
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.pdb
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\Day2.genruntimeconfig.cache
+C:\LanguageFundamentals\Day2\obj\Debug\net8.0\ref\Day2.dll

@@ -1,0 +1,14 @@
+C:\LanguageFundamentals\bin\Debug\net8.0\LanguageFundamentals.exe
+C:\LanguageFundamentals\bin\Debug\net8.0\LanguageFundamentals.deps.json
+C:\LanguageFundamentals\bin\Debug\net8.0\LanguageFundamentals.runtimeconfig.json
+C:\LanguageFundamentals\bin\Debug\net8.0\LanguageFundamentals.dll
+C:\LanguageFundamentals\bin\Debug\net8.0\LanguageFundamentals.pdb
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.GeneratedMSBuildEditorConfig.editorconfig
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.AssemblyInfoInputs.cache
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.AssemblyInfo.cs
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.csproj.CoreCompileInputs.cache
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.dll
+C:\LanguageFundamentals\obj\Debug\net8.0\refint\LanguageFundamentals.dll
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.pdb
+C:\LanguageFundamentals\obj\Debug\net8.0\LanguageFundamentals.genruntimeconfig.cache
+C:\LanguageFundamentals\obj\Debug\net8.0\ref\LanguageFundamentals.dll
