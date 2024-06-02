@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\LanguageFundamentals\\Day3\\Day3.csproj",
+      "projectUniqueName": "C:\\GITHUB\\EWADB4\\LanguageFundamentals\\Day3\\Day3.csproj",
       "projectName": "Day3",
-      "projectPath": "C:\\LanguageFundamentals\\Day3\\Day3.csproj",
+      "projectPath": "C:\\GITHUB\\EWADB4\\LanguageFundamentals\\Day3\\Day3.csproj",
       "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
-      "outputPath": "C:\\LanguageFundamentals\\Day3\\obj\\",
+      "outputPath": "C:\\GITHUB\\EWADB4\\LanguageFundamentals\\Day3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Saw Yu Nandar\\AppData\\Roaming\\NuGet\\NuGet.Config",
