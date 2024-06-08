@@ -1,0 +1,15 @@
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\bin\Debug\net8.0\Day7.exe
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\bin\Debug\net8.0\Day7.deps.json
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\bin\Debug\net8.0\Day7.runtimeconfig.json
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\bin\Debug\net8.0\Day7.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\bin\Debug\net8.0\Day7.pdb
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.GeneratedMSBuildEditorConfig.editorconfig
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.AssemblyInfoInputs.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.AssemblyInfo.cs
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.csproj.CoreCompileInputs.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.sourcelink.json
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\refint\Day7.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.pdb
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\Day7.genruntimeconfig.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\Day7\obj\Debug\net8.0\ref\Day7.dll
