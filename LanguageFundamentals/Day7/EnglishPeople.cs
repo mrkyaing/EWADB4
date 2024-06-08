@@ -20,7 +20,7 @@ namespace Day7
 
         public override void WorkDo()
         {
-            throw new NotImplementedException();
+           Console.WriteLine("doing work at "+base.Address);
         }
          
     }

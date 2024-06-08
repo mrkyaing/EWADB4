@@ -19,9 +19,5 @@ namespace Day7
             Console.WriteLine ($"{Name} live in at {Address}");
         }
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
     }
 }

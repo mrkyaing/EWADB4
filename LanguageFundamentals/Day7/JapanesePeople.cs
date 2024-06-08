@@ -19,7 +19,7 @@ namespace Day7
 
         public override void WorkDo()
         {
-            Console.WriteLine("doing work");
+            Console.WriteLine("doing work at "+base.Address);
         }
         
     }
