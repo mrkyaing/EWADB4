@@ -1,0 +1,15 @@
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\bin\Debug\net8.0\PayrollSystem.exe
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\bin\Debug\net8.0\PayrollSystem.deps.json
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\bin\Debug\net8.0\PayrollSystem.runtimeconfig.json
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\bin\Debug\net8.0\PayrollSystem.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\bin\Debug\net8.0\PayrollSystem.pdb
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.AssemblyInfoInputs.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.AssemblyInfo.cs
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.csproj.CoreCompileInputs.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.sourcelink.json
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\refint\PayrollSystem.dll
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.pdb
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\PayrollSystem.genruntimeconfig.cache
+C:\GITHUB\EWADB4\LanguageFundamentals\PayrollSystem\obj\Debug\net8.0\ref\PayrollSystem.dll
