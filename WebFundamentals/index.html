@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Index Page</title>
+    <style>
+        .p1 {
+            color: gray;
+        }
+
+        .p2 {
+            color: blue;
+        }
+        h1{
+            background-color: blue;
+        }
+        body{
+        background-color:azure;
+        }
+    </style>
+    <script>
+        //define a function 
+        function clickme(){
+            alert("Click me");
+        }
+        function changeColor(){
+          document.body.style.backgroundColor="red";
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1 title="this is h1 tag apply." style="color: red;">My First Heading</h1>
+    <p title="this is p tag apply." class="p1">My first paragraph.</p>
+    <p title="this is p tag apply." class="p2">My second paragraph.</p>
+    <a href="home.html" class="p1">go to home</a>
+    <a href="https://www.facebook.com">go to fb</a>
+    <button onclick="clickme()">Click me</button>
+    <button onclick="changeColor()">Change background color </button>
+</body>
+
+</html>
