@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Entry Page</title>
+    <link rel="stylesheet" href="stylesheet/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>@ViewBag.Info</h1>
+        <div class="row">
+            <div class="col-md-10 "> <h3 class="form-title">Student Entry</h3></div>
+            <div class="col-md-2"><a href=""> Student </a> <label>/</label><a href=""> List</a></div>
+        </div>
+    
+        <form name="studentRegistraionForm" action="javascript:showConrimMessage()">
+            <div class="form-group">
+                <label for="Code">Code</label><br>
+                <input type="text" placeholder="Student Code" id="Code" name="Code">
+            </div>
+
+            <div class="form-group">
+                <label for="Name">Name</label><br>
+                <input type="text" placeholder="Student Name" id="Name" name="Name">
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label><br>
+                <input type="text" placeholder="Student Email" id="Email" name="Email">
+            </div>
+
+            <div class="form-group">
+                <label for="DateOfBirth">Date Of Birth</label><br>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' placeholder="mm/dd/yyyy" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Phone">Phone</label><br>
+                <input type="text" placeholder="Phone" id="Phone" name="Phone">
+            </div>
+
+            <div class="form-group">
+                <label for="Nrc">National Registration Card</label><br>
+                <input type="text" placeholder="Student NRC" id="Nrc" name="Nrc">
+            </div>
+
+            <div class="form-group">
+                <label for="FatherName">Father Name</label><br>
+                <input type="text" placeholder="Father Name" id="FatherName" name="FatherName">
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label><br>
+                <div class='input-group' id='address'>
+                    <textarea placeholder="mm/dd/yyyy" class="form-control" ></textarea>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group"> 
+                <label for="BatchName">Batch Name</label><br>
+                <input type="text" placeholder="JWDBatch2" id="BatchName" name="BatchName">
+            </div>
+
+            <div class="action-btn">
+                <input type="submit" class="btn btn-success btn-submit"  value="Entry">
+                <input type="button" class="btn" onclick="clickCancel()" value="Cancel">
+            </div>
+            <h2>
+                <ul>
+                    @foreach(string friend in ViewBag.Friends){
+                        <li>@friend</li>        
+                    }
+                </ul>
+            </h2>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
+    <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'MM/DD/YYYY'
+            });
+        });
+        //define a function 
+        function clickCancel(){
+            location.reload();
+        }
+        function showConrimMessage(){
+            alert("All of your Entry Data is correct?")
+        }
+    </script>
+    
+</body>
+</html>
