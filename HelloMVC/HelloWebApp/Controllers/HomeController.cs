@@ -28,6 +28,7 @@ namespace HelloWebApp.Controllers
        //coding  is the art of programming.
        //hosting:port/home/welcome
        public ViewResult Welcome(){
+            ViewData["Day"]= "Sunday";
         return View();
        }
     }
