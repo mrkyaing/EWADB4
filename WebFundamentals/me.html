@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h1{
+        h1 {
             color: blue;
         }
     </style>
 </head>
+
 <body>
-    
-<div id="app">
-{{message}}
-</div>
-<h1 id="app2"> {{Hi}}</h1>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <div id="app">
+        {{message}}
+    </div>
+    <h1 id="app2"> {{Hi}}</h1>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <script>
-        var app=new Vue({
-                el:"#app",
-                data:{
-                    message:"Hello"
-                }
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello"
             }
+        }
         )
-        var app2=new Vue({
-            el:"#app2",
-            data:{
-                Hi:"Hi"
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                Hi: "Hi"
             }
         })
     </script>
 </body>
+
 </html>

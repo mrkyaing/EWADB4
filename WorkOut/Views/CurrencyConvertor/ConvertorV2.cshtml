@@ -1,0 +1,59 @@
+<script>
+    function fillOnLoad() {
+        if ('@ViewData["selectedCurrency"]'!="") {
+            document.getElementById("selSelectedCurrency").value = '@ViewData["selectedCurrency"]';
+        }
+        if ('@ViewData["InputedAmount"]' > 0) {
+            document.getElementById("txtAmount").value = '@ViewData["InputedAmount"]';
+        }
+        
+    }
+    function checkSelectedCurrency(){
+        var selectedCrrency= document.getElementById("selSelectedCurrency").value;
+        if(selectedCrrency==""){
+            alert("Invalid Currency Convertion");
+        }
+    }
+</script>
+<body onload="fillOnLoad()">
+   <center>
+    <form action="/currencyConvertor/ConvertorV2" method="post">
+        <h1>
+            Currency Convertor V2
+        </h1>
+        <table>
+            <tr>
+                <td>
+                    <label>Choose Currency:</label>
+                </td>
+                <td>
+                    <select name="selectedCurrency" id="selSelectedCurrency">
+                        <option value="">--SELECT ONE--</option>
+                        <option value="usd">US Dollor</option>
+                        <option value="sdg">Sinpare Dollor</option>
+                        <option value="baht">Thai Baht</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Amount:</label>
+                </td>
+                <td> <input type="text" name="amount" id="txtAmount"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Result(MMK)</label>
+                </td>
+                <td>
+                    <input type="text" value="@ViewData["result"]" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Convert" onclick="checkSelectedCurrency()"></td>
+            </tr>
+        </table>
+    </form>
+   </center>
+</body>
