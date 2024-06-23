@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    min-width: 100vh;
+}
+header{
+    background-color: gray;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+}
+nav{
+    background-color: gray;
+    float: left;
+    padding: 10px;
+    width: 15%;
+    height: 500px;
+}
+ul li{
+    list-style: none;
+    padding: 0px;
+}
+article{
+    width: 85%;
+    float: right;
+    padding: 10px;
+    height: 500px;
+}
+footer{
+    background-color: gray;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+.btnSend{
+    background-color: greenyellow;
+    width: 130px;
+}
+.homearticle{
+    text-align: center;
+}
+.frm-contact{
+    
+}
+input[type=text]{
+    width: 100%;
+    box-sizing: border-box;
+}

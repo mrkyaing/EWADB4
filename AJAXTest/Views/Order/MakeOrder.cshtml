@@ -1,0 +1,45 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+@{
+    ViewData["Title"] = "MakeOrder";
+}
+<form>
+    <div class="mb-3">
+        <label class="form-control">Id</label>
+        <input type="text" id="txtId" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-control">Quantity</label>
+        <input type="text" id="txtQuantity" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-control">Amount</label>
+        <input type="text" id="txtAmount" class="form-control">
+    </div>
+    <button id="btnOrder" class="btn btn-primary">make an order</button>
+</form>
+<script>
+    $("#btnOrder").click(function (evt) {
+        evt.preventDefault();
+        var url = "/order/makeorder";
+        var order = {};
+        order.Id = $("#txtId").val();//O001
+        order.Quantity = $("#txtQuantity").val();//3
+        order.Amount = $("#txtAmount").val();//10
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: order,
+            success: function (response) {
+                var data = JSON.stringify(response);
+                var orderModel=JSON.parse(data);
+                console.log(orderModel);
+                alert("Your Order Total Cost:"+orderModel.totalCost +" Ordered At"+orderModel.orderedAt);
+            },
+            failure: function (error) {
+                console.log(error);
+            }
+        });
+    });
+</script>

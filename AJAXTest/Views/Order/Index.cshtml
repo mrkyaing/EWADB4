@@ -1,0 +1,32 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<h1>this is Order Page.</h1>
+<form>
+    <p id="myP">This is current time.</p>
+    <button id="btnShowTime" class="btn btn-primary">show me time</button>
+    <p id="count">This is show count</p>
+    <button id="btnShowCount" class="btn btn-danger">show count</button>
+</form>
+<script>
+    
+    $("#btnShowTime").on('click',function(evt){
+        evt.preventDefault();
+        var url="/order/TellMeNow";
+        //AJAX call to the server side
+        $.get(url,null,function(data){
+        //callback function to the client side .
+        $("#myP").html(data);
+       })
+    });
+
+    $("#btnShowCount").click(function(evt){
+        evt.preventDefault();
+        var url="/order/ShowCount";
+        //AJAX call to the server side
+        $.get(url,null,function(data){
+            //callback function to the client side .
+            $("#count").html(data);
+        });
+    });
+</script>
