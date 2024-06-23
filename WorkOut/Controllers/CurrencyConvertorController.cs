@@ -37,8 +37,7 @@ namespace WorkOut.Controllers
         {
             if(amount<0 || "".Equals(selectedCurrency)){
                 return View();
-            }
-            
+            }          
             ViewData["selectedCurrency"]=selectedCurrency;
             ViewData["InputedAmount"]=amount;
             switch (selectedCurrency)
