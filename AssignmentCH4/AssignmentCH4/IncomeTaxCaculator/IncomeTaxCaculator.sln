@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncomeTaxCaculator", "IncomeTaxCaculator.csproj", "{FB8B67CF-1494-4104-A5D0-E8B7630103B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB8B67CF-1494-4104-A5D0-E8B7630103B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8B67CF-1494-4104-A5D0-E8B7630103B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8B67CF-1494-4104-A5D0-E8B7630103B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8B67CF-1494-4104-A5D0-E8B7630103B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8A16FA2-4D3B-4D28-8295-60E6F7F9FA20}
+	EndGlobalSection
+EndGlobal

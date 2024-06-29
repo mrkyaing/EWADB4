@@ -1,0 +1,52 @@
+<h1>Register Page</h1>
+<form action="/home/RegisterAsList" method="post">
+    @{
+        int count = 0;
+    }
+    @for (int i = 0; i < 3; i++)
+    {
+        count = @i;
+        count++;
+        <h1>Employee :@count</h1>
+        <div class="mb-3">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" name="[@i].Id" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="[@i].Name" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="[@i].Email" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Country</label>
+            <select name="[@i].HomeAddress.Country" class="form-control">
+                <option value="Myanmar">Myanmar</option>
+                <option value="Thaland">Thaland</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">City</label>
+            <input type="text" class="form-control" name="[@i].HomeAddress.City" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Township</label>
+            <input type="text" class="form-control" name="[@i].HomeAddress.Township" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Zip Code</label>
+            <input type="text" class="form-control" name="[@i].HomeAddress.ZipCode" required>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="alert alert-primary" role="alert">
+        @ViewData["Info"]
+    </div>
+</form>

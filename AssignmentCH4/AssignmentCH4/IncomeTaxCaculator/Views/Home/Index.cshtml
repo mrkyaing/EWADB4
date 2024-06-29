@@ -1,0 +1,154 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="icon" />
+    <script src="/lib/font-awesome/js/all.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <style>
+        .content {
+            border: 1px solid gray;
+            padding: 5px;
+            border-radius: 20px;
+        }
+    </style>
+
+    <script>
+
+        function FormLoad() {
+            debugger;
+            document.getElementById("haveChildren").style.display = "none";
+            document.getElementById("btnCalculateTax").disabled = true;
+            if ("@ViewBag.Message" == "" || "@ViewBag.Message" == null) {
+                document.getElementById("lblTaxInfo").innerHTML = "သင်အခွန်ပေးဆောင်ရန် မလိုသေးပါ။";
+            }
+            else {
+                document.getElementById("lblTaxInfo").innerHTML = "@ViewBag.Message";
+            }
+
+        }
+        function CheckInput() {
+            if (document.getElementById("rbtnMarried").checked == true) {
+                if (document.getElementById("txtChildren").value == "" || document.getElementById("txtChildren").value == null || document.getElementById("txtIncome").value == "" || document.getElementById("txtIncome").value == null) {
+                    document.getElementById("btnCalculateTax").disabled = true;
+                }
+                else {
+                    document.getElementById("btnCalculateTax").disabled = false;
+                }
+            }
+            else if (document.getElementById("rbtnSingle").checked == true) {
+                if (document.getElementById("txtIncome").value == "" || document.getElementById("txtIncome").value == null) {
+                    document.getElementById("btnCalculateTax").disabled = true;
+                }
+                else {
+                    document.getElementById("btnCalculateTax").disabled = false;
+                }
+            }
+            else {
+                document.getElementById("btnCalculateTax").disabled = true;
+            }
+        }
+        function HaveChildren() {
+            if (document.getElementById("rbtnMarried").checked == true) {
+                document.getElementById("haveChildren").style.display = "";
+            }
+            else if (document.getElementById("rbtnSingle").checked == true) {
+                document.getElementById("haveChildren").style.display = "none";
+            }
+        }
+        function CheckNumberOfChildrenInput() {
+            if (document.getElementById("haveChildren").style.display == "") {
+                if (document.getElementById("txtChildren").value == "" || document.getElementById("txtChildren").value == null) {
+                    document.getElementById("btnCalculateTax").disabled = true;
+                } else { document.getElementById("btnCalculateTax").disabled = false; }
+            }
+        }
+    </script>
+</head>
+
+<body onload="FormLoad()">
+    <div class="container content col-8 p-3 bg-dark">
+        <div class="row mb-3">
+            <h5 class="mb-5 text-white"> Income Tax Calculator</h5>
+        </div>
+        <div class="row">
+            <div class="container-fluid bg-primary rounded-3 p-3 mb-2 text-center">
+                <h5 class="text-white" id="lblTaxInfo">
+                    <i class="fas fa-exclamation-circle"></i>
+                    @ViewBag.Message
+                </h5>
+            </div>
+        </div>
+
+        <form asp-controller="Home" asp-action="Index" method="post">
+            <div class="row mb-3 p-3">
+                <div class="col-3">
+                    <label class="form-label text-white"><b>တစ်လ၀င်ငွေ (ကျပ်)</b></label>
+                </div>
+                <div class="col">
+                    <input type="number" name="income" class="form-control" id="txtIncome" onchange="CheckInput()"
+                        oninput="this.onchange()" onfocus="this.onchange()" />
+                </div>
+            </div>
+            <div class="row mb-3 p-3">
+                <div class="col-3"></div>
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="true" id="father" name="hasFather">
+                        <label class="form-check-label text-white" for="father">
+                            အတူနေအဘ
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="checkbox" value="true" id="mother" name="hasMother">
+                        <label class="form-check-label text-white" for="mother">
+                            အတူနေအမိ
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 p-3">
+                <div class="col-3">
+                    <label class="form-label text-white me-10">အိမ်ထောင်</label>
+                </div>
+
+
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="maritalStatus" id="rbtnMarried"
+                            value="Married" onclick="HaveChildren(); CheckNumberOfChildrenInput()">
+                        <label class="form-check-label text-white" for="maried">ရှိ</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="maritalStatus" id="rbtnSingle" value="Single"
+                            onclick="HaveChildren(); CheckNumberOfChildrenInput()" checked>
+                        <label class="form-check-label text-white" for="single">မရှိ</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 p-3" id="haveChildren">
+                <div class="col-3">
+                    <label class="col-2 text-white">သားသမီး</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" name="children" id="txtChildren" class="form-control"
+                        onchange="CheckNumberOfChildrenInput()" oninput="this.onchange()" onfocus="this.onchange()" />
+                </div>
+                <div class="col">
+                    <label class="form-label text-white col-1">ယောက်</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-info" style="width:100%"
+                        id="btnCalculateTax">တွက်ချက်ပါ</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>

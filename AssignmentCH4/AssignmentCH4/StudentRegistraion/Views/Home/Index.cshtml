@@ -1,0 +1,169 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .content{
+            border:1px solid gray;
+            padding: 5px;
+            border-radius: 20px;
+        }
+        .form-header{
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .error-message{
+            font-size: 15px;
+            color: red;
+        }
+     
+    </style>
+
+    <script>
+        //function OnLoadFunc(){
+        //    let check_input_fields = "Please Fill All Necessary Fields!";
+        //    let check_email = "Invalid emaill address";
+        //    let check_password = "Please input strong passowrd";
+        //    document.getElementById("lblCheckInputFields").innerHTML = check_input_fields;
+        //    document.getElementById("lblInvalidEmail").innerHTML = check_email;
+        //    document.getElementById("lblPasswordMismatch").innerHTML = check_password;
+        //}
+
+        function CheckInputFields(){
+            debugger;
+            var check_input_fields = "";
+            var name = document.forms["registerationform"]["name"].value;
+            var email = document.forms["registerationform"]["email"].value;
+            var password = document.forms["registerationform"]["password"].value;
+            var confirm_password = document.forms["registerationform"]["confirmPassword"].value;
+            var gender = document.forms["registerationform"]["gender"].value;
+            var dob = document.forms["registerationform"]["dob"].value;
+            var city = document.forms["registerationform"]["city"].value;
+            var address = document.forms["registerationform"]["address"].value;
+
+            if (name == "" || email == "" || password == "" || confirm_password == "" || gender == "" || dob == "" || city == "" || address == "" ||
+                name == null || email == null || password == null || confirm_password == null || gender == null || dob == null || city == null || address == null) {
+                document.getElementById("btnRegister").disabled = true;
+                //check_input_fields = "Please Fill All Necessary Fields!";
+                document.getElementById("lblCheckInputFields").innerHTML = "Please fill all neccessary fields";
+            }else{
+                document.getElementById("btnRegister").disabled = false;
+               // check_input_fields = "";
+                document.getElementById("lblCheckInputFields").innerHTML = "";
+            }
+        }
+        function CheckEmailFormat(){
+            let email = document.getElementById("txtEmail").value;
+            if (!email.includes("@@") || !email.includes(".")){
+                document.getElementById("btnRegister").disabled = true;
+                document.getElementById("lblInvalidEmail").innerHTML = "Invalid Email Format";
+            } else { 
+                document.getElementById("lblInvalidEmail").innerHTML = "";
+                //document.getElementById("btnRegister").disabled = false;
+            }
+        }
+        function CheckPassword(){
+            let password = document.getElementById("txtPassword").value;
+            let confirm_password = document.getElementById("txtConfirmPassword").value;
+            if(confirm_password != password){
+                document.getElementById("btnRegister").disabled = true;
+                document.getElementById("lblPasswordMismatch").innerHTML = "Password mismatch, please check!";
+            } else { 
+                document.getElementById("lblPasswordMismatch").innerHTML = ""; 
+               // document.getElementById("btnRegister").disabled = false;
+            }
+        }
+    </script>
+    
+</head>
+<body onload="CheckInputFields()">
+    <div>
+        <div class="row">
+            <div class="col-sm-1 col-lg-4"></div>
+            <div class="col-sm-10 col-lg-4 content p-3 bg-dark">
+                <h5 class="form-header b-4 text-white"><b>Register Here</b></h5>
+                <small id="lblCheckInputFields" class="error-message"></small>
+                <form asp-action="Index" method="post" name="registerationform">
+                    <div class="mb-2">
+                        <label class="form-label text-white">Name:</label>
+                        <input type="text" id="txtName" name="name" class="form-control"
+                            placeholder="Enter your name" onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()"/>
+                    </div>
+                    <div>
+                        <label class="text-white">Email:</label>
+                        <input type="text" id="txtEmail" name="email" class="form-control" placeholder="Enter your email"
+                               onchange="CheckInputFields(); CheckEmailFormat()" onkeypress="this.onchange()" oninput="this.onchange()" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="error-message" id="lblInvalidEmail"></label>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">Password:</label>
+                        <input type="password" id="txtPassword" name="password" class="form-control" placeholder="Enter your password"
+                               onchange="CheckPassword()" onkeypress="this.onchange()" oninput="this.onchange()"  />
+                    </div>
+                    <div>
+                        <label class="text-white">Confirm password:</label>
+                        <input type="password" id="txtConfirmPassword" name="confirmPassword" class="form-control" placeholder="Comfirm your password"
+                               onchange="CheckInputFields(); CheckPassword()" onkeypress="this.onchange()" oninput="this.onchange()" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="error-message" id="lblPasswordMismatch"></label>
+                    </div>
+                    <label class="form-label"></label>
+                    <label class="form-label text-white">Gender:</label>
+                    <div class="mb-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="Male" checked
+                                   onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()" />
+                            <label class="form-label text-white">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" value="Female"
+                                   onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()" />
+                            <label class="form-label text-white">Female</label>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label text-white">Date Of Birth</label>
+                        <input type="date" id="dtDOB" class="form-control" name="dob"
+                               onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="mb-1 text-white">City</label>
+                        <select class="form-select" name="city" id="selCity"
+                                onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()">
+                            <option value="YGN">Yangon</option>
+                            <option value="MDY">Mandalay</option>
+                            <option value="PYL">Pyin Oo Lwin</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label text-white">Address</label>
+                        <textarea class="form-control" name="address" id="txtAddress"
+                                  onchange="CheckInputFields()" onkeypress="this.onchange()" oninput="this.onchange()"></textarea>
+                    </div>
+                    <button type="submit" id="btnRegister" class="btn btn-primary mb-2" style="width: 100%">Register</button>
+                    @if(ViewBag.Name !=null){
+                    @if(ViewBag.Name != "" || ViewBag.Email != "" || ViewBag.Gender != "" || ViewBag.DOB != "" || ViewBag.City != "" || ViewBag.Address != "")
+                    {
+                        <small class="text-white">You have successfully registered with</small><br>
+                        <small class="text-white"> Name: @ViewBag.Name</small><br>
+                        <small class="text-white"> Email: @ViewBag.Email</small><br>
+                        <small class="text-white"> Gender: @ViewBag.Gender</small><br>
+                        <small class="text-white"> DOB: @ViewBag.DOB</small><br>
+                        <small class="text-white"> City: @ViewBag.City</small><br>
+                        <small class="text-white"> Address: @ViewBag.Address</small><br>
+                    }
+                    }
+                    
+                </form>      
+            </div>
+            <div class="col-sm-1 col-lg-4"></div>
+        </div>
+    </div>
+</body>
