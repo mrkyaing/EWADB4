@@ -1,4 +1,4 @@
-﻿using CloudHRMS.Models;
+﻿using CloudHRMS.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace CloudHRMS.DAO
 {
