@@ -27,7 +27,7 @@ namespace CloudHRMS.Controllers
                 Id = s.Id,
                 Code = s.Code + "/" + s.Name,
             }).ToList();
-            ViewBag.Departments = positions;//passing the all of position to the UI
+            ViewBag.Departments = positions;//passing the all of Departments to the UI
         }
 
         private void bindPositionData()
@@ -55,10 +55,10 @@ namespace CloudHRMS.Controllers
                    Name=ui.Name,
                    Email=ui.Email,
                    Phone=ui.Phone,
-                   Gender=ui.Gender,
-                   DepartmentId=ui.DepartmentId,
-                   PositionId=ui.PositionId,
-                   DOR=ui.DOR,
+                   Gender=ui.Gender, 
+                   DepartmentId=ui.DepartmentId,//adding the ralatiosnip key -departmentId
+                   PositionId=ui.PositionId,//adding the ralatiosnip key - positionId
+                    DOR =ui.DOR,
                    DOE=ui.DOE,
                    DOB=ui.DOB,
                    Address=ui.Address,
