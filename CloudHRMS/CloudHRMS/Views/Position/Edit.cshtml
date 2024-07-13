@@ -37,11 +37,11 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Created On</label>
-        <input type="text" class="form-control" required value="@Model.CreatedOn" readonly name="CreatedOn">
+        <input type="text" class="form-control" required value="@Model.?CreatedOn" readonly name="CreatedOn">
     </div>
     <div class="mb-3">
         <label class="form-label">Modified On</label>
-        <input type="text" class="form-control" required value="@Model.UpdatedOn" readonly>
+        <input type="text" class="form-control" required value="@Model.?UpdatedOn" readonly>
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
     <a href="/position/list" class="btn btn-outline-primary">List</a>
