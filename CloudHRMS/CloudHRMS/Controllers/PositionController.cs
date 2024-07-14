@@ -14,13 +14,25 @@ namespace CloudHRMS.Controllers
         }
         public IActionResult Entry()
         {
-            return View();
+            PositionViewModel positionViewModel = new PositionViewModel()
+            {
+                Level = 1,
+            };
+            return View(positionViewModel);
         }
         [HttpPost]
         public IActionResult Entry(PositionViewModel positionViewModel)
         {
             try
             {
+                //validation for existing codes
+                var isAlreadyExist=_dbContext.Positions.Where(w=>(w.Code== positionViewModel.Code || w.Name==positionViewModel.Name)&&!w.IsInActive).Any();
+                if (isAlreadyExist)
+                {
+                    ViewData["Info"] = "This Position code or name is already exist in the system.";
+                    ViewData["Status"] = false;
+                    return View(positionViewModel);
+                }
                 //Data Exchange from view Model to Entity
                 //ViewModels to Data Models 
                 PositionEntity positionEntity = new PositionEntity()
@@ -41,7 +53,7 @@ namespace CloudHRMS.Controllers
                 ViewData["Info"] = "Error occur when the recrod save to the system."+e.Message;
                 ViewData["Status"] = false;
             }
-            return View();
+            return View(positionViewModel);
         }
         public IActionResult List()
         {

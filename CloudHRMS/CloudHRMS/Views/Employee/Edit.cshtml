@@ -1,0 +1,101 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Employee";
+}
+<h3>Employee Edit</h3>
+@{
+    var info = ViewData["Info"];
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+<form action="/employee/update" method="post">
+    <div class="mb-3">
+        <input type="hidden"  name="Id" value="@Model.Id"/>
+        <label class="form-label">Code:</label>
+        <input type="text" class="form-control" name="Code" required placeholder="type code" value="@Model.Code">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" name="Name" required placeholder="type name" value="@Model.Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="Email" required placeholder="type email" value="@Model.Email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Gender</label><br />
+        Female <input type="radio" class="form-check-input" name="Gender" required value="f" @(Model.Gender=="f"?"Checked":"")>
+        Male <input type="radio" class="form-check-input" name="Gender" required value="m" @(Model.Gender == "m" ? "Checked" : "")>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Position</label>
+        <select class="form-select" name="PositionId">
+            @foreach (var position in ViewBag.Positions)
+            {
+                @if (position.Id == Model.PositionId)
+                {
+                    <option value="@position.Id" selected>@position.Code</option>
+                }
+                else
+                {
+                    <option value="@position.Id">@position.Code</option>
+                }             
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select class="form-select" name="DepartmentId">
+            @foreach (var department in ViewBag.Departments)
+            {
+                @if (department.Id == Model.DepartmentId)
+                {
+                    <option value="@department.Id" selected>@department.Code</option>
+                }
+                else
+                {
+                    <option value="@department.Id">@department.Code</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DOB</label>
+        <input type="date" class="form-control" name="DOB" required value="@Model.DOB.ToString("yyyy-MM-dd")">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DOE</label>
+        <input type="date" class="form-control" name="DOE" required value="@Model.DOE.ToString("yyyy-MM-dd")">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DOR</label>
+        <input type="date" class="form-control" name="DOR" value="@Model.DOR?.ToString("yyyy-MM-dd")">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-control" name="Phone" required placeholder="type phone" value="@Model.Phone">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Basic Salary</label>
+        <input type="number" class="form-control" name="BasicSalary" required placeholder="type basic salary" value="@Model.BasicSalary">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Address</label>
+        <textarea class="form-control" placeholder="type address.." name="Address">@Model.Address</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/employee/index" class="btn btn-outline-primary">List</a>
+</form>

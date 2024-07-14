@@ -17,7 +17,9 @@ namespace CloudHRMS.Models.ViewModels
         public decimal BasicSalary { get; set; }
         public string? Phone { get; set; }
         public string PositionId { get; set; }
+        public string PositionInfo { get; set; }
         public string DepartmentId { get; set; }
+        public string DepartmentInfo { get; set; }
         //audit purpose 
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

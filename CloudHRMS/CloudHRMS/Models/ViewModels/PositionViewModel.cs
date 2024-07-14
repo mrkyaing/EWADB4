@@ -1,4 +1,6 @@
-﻿namespace CloudHRMS.Models.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CloudHRMS.Models.ViewModels
 {
     public class PositionViewModel
     {

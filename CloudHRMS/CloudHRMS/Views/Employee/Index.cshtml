@@ -1,0 +1,78 @@
+﻿@model IList<EmployeeViewModel>
+<h3>Employee List Information</h3>
+<a href="/employee/entry" class="btn btn-outline-primary">Entry</a>
+@if (TempData["info"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["info"]
+    </div>
+}
+<table class="table">
+    <thead>
+        @{
+            int i = 1;
+        }
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">DOB</th>
+            <th scope="col">DOE</th>
+            <th scope="col">DOR</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Basic Salary</th>
+            <th scope="col">Address</th>
+            <th scope="col">Position</th>
+            <th scope="col">Department</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Gender</td>
+                    <td>@item.DOB.ToString("yyyy-MM-dd")</td>
+                    <td>@item.DOE.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        @if (item.DOR.HasValue)
+                        {
+                            @item.DOR?.ToString("yyyy-MM-dd")
+                        }
+                        else
+                        {
+                          <span>-</span>
+                        }
+                    </td>
+                    <td>@item.Phone</td>
+                    <td>@item.BasicSalary</td>
+                    <td>@item.Address</td>
+                    <td>@item.PositionInfo</td>
+                    <td>@item.DepartmentInfo</td>
+                    <td>
+                        <a href="/employee/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    </td>
+                    <td>
+                        <a href="/employee/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                There is no data!!
+            </div>
+        }
+    </tbody>
+</table>
