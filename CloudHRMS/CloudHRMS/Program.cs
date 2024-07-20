@@ -2,7 +2,6 @@ using CloudHRMS.DAO;
 using CloudHRMS.Services;
 using CloudHRMS.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +13,7 @@ var config = builder.Configuration;
 builder.Services.AddDbContext<CloudHRMSApplicationDbContext>(o =>o.UseSqlServer(config.GetConnectionString("CloudHRMSConnectionString")));
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();//register the Unit Of Work for all repositories for it.
 builder.Services.AddTransient<IPositionService,PositionService>();// register the Position domain for CRUD process
+builder.Services.AddTransient<IDepartmentService, DepartmentService>();// register the Department domain for CRUD process
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

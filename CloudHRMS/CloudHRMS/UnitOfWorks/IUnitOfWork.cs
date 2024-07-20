@@ -6,6 +6,7 @@ namespace CloudHRMS.UnitOfWorks
     {
         //Register/Declare here for your repository Domains as A Unit Of Work ..................................
         IPositionRepository PositionRepository { get; }
+        IDepartmentRepository DepartmentRepository { get; }
 
         //Commit stages (insert,Update,Delete)
         void Commit();

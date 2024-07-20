@@ -1,8 +1,6 @@
 ﻿using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
 using CloudHRMS.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
-
 namespace CloudHRMS.Services
 {
     public class PositionService : IPositionService

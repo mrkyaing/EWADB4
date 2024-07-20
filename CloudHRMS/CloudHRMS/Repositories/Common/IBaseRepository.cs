@@ -3,7 +3,7 @@ namespace CloudHRMS.Repositories.Common
 {
     public interface IBaseRepository<T> where T:class
     {
-        //CRUD Process for 
+        //CRUD Process for Generic Pattern
         void Create(T entity);
         IEnumerable<T> GetAll();
         //Delegate functions   dbContext.where();

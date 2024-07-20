@@ -1,0 +1,47 @@
+﻿@model IList<DepartmentViewModel>
+<h3>Department List Information</h3>
+<a href="/department/entry" class="btn btn-outline-primary">Entry</a>
+@if(TempData["info"]!=null){
+<div class="alert alert-success" role="alert">
+    @TempData["info"]
+</div>
+}
+<table class="table">
+    <thead>
+        @{
+            int i = 1;
+        }
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Extension Phone</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>@item.Code</td>
+                    <td>@item.Name</td>
+                    <td>@item.ExtensionPhone</td>
+                    <td>
+                        <a href="/department/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                        <a href="/department/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');">DELETE</a>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+               There is no data!!
+            </div>
+        }
+    </tbody>
+</table>

@@ -1,66 +1,34 @@
-﻿using CloudHRMS.DAO;
-using CloudHRMS.Models.Entities;
-using CloudHRMS.Models.ViewModels;
+﻿using CloudHRMS.Models.ViewModels;
+using CloudHRMS.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly CloudHRMSApplicationDbContext _applicationDbContext;
+        private readonly IDepartmentService _departmentService;
 
-        public DepartmentController(CloudHRMSApplicationDbContext applicationDbContext)
+        public DepartmentController(IDepartmentService departmentService)
         {
-            this._applicationDbContext = applicationDbContext;
+            this._departmentService = departmentService;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult List() //Show
-        {
-            IList<DepartmentViewModel> Departments = _applicationDbContext.Departments.Select(
-                 s => new DepartmentViewModel
-                 {
-                     Id = s.Id,
-                     Code = s.Code,
-                     Name = s.Name,
-                     ExtensionPhone = s.ExtensionPhone,
-                     TotalEmployeeCount = _applicationDbContext.Employees.Where(e => e.DepartmentId == s.Id).Count()
-                 }).ToList();
-            return View(Departments);
-        }
+        public IActionResult List() => View(_departmentService.GetAll());
 
         public IActionResult Edit(string id)
-        {
-            if (id != null)
-            {
-                DepartmentViewModel organization = _applicationDbContext.Departments.Where(x => x.Id == id).Select(s => new DepartmentViewModel
-                {
-                    Id = s.Id,
-                    Code = s.Code,
-                    Name = s.Name,
-                    ExtensionPhone = s.ExtensionPhone
-                }).SingleOrDefault();
-                return View(organization);
-            }
-            else
-            {
-                return RedirectToAction("List");
-            }
+        { 
+            return View(_departmentService.GetById(id));       
         }
         public IActionResult Delete(string id)
         {
             try
             {
-                var organization = _applicationDbContext.Departments.Find(id);
-                if (organization is not null)
-                {
-                    _applicationDbContext.Remove(organization);
-                    _applicationDbContext.SaveChanges();
-                }
-                TempData["Info"] = "Save Successfully";
+                _departmentService.Delete(id);
+                TempData["Info"] = "Delete Successfully";
             }
             catch (Exception ex)
             {
@@ -76,21 +44,22 @@ namespace CloudHRMS.Controllers
         {
             try
             {
-                //Data exchange from view model to data model
-                var organization = new DepartmentEntity()
+                //validation for existing codes
+                var isAlreadyExist = _departmentService.IsAlreadyExist(ui);
+                if (isAlreadyExist)
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    Code = ui.Code,
-                    Name = ui.Name,
-                    ExtensionPhone = ui.ExtensionPhone
-                };
-                _applicationDbContext.Departments.Add(organization);
-                _applicationDbContext.SaveChanges();
-                ViewBag.Info = "successfully save a record to the system";
+                    ViewData["Info"] = "This Position code or name is already exist in the system.";
+                    ViewData["Status"] = false;
+                    return View(ui);
+                }
+                _departmentService.Create(ui);
+                ViewData["Info"] = "Successfully save the recrod to the system.";
+                ViewData["Status"] = true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ViewBag.Info = "Error occur when  saving a record  to the system";
+                ViewData["Info"] = "Error occur when the recrod save to the system." + e.Message;
+                ViewData["Status"] = false;
             }
             return View();
         }

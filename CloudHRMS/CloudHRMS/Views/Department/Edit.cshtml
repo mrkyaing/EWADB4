@@ -1,0 +1,48 @@
+﻿@model DepartmentViewModel
+@{
+    ViewData["Title"] = "Department";
+}
+<h3>Department Edit</h3>
+@{
+    var info = ViewData["Info"];
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+<form action="/department/update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" /> <!--for update process carrying Id-->
+    <div class="mb-3">
+        <label class="form-label">Code:</label>
+        <input type="text" class="form-control" name="Code" required value="@Model.Code">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" name="Name" required value="@Model.Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Extension Phone:</label>
+        <input type="text" class="form-control" name="ExtensionPhone" required value="@Model.ExtensionPhone">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Created On</label>
+        <input type="text" class="form-control" required value="@Model.CreatedOn" readonly name="CreatedOn">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Modified On</label>
+        <input type="text" class="form-control" required value="@Model.UpdatedOn" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/department/list" class="btn btn-outline-primary">List</a>
+</form>

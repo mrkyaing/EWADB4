@@ -16,7 +16,7 @@ namespace CloudHRMS.Models.Entities
         public string? Phone { get; set; }
         public string PositionId { get; set; }//foreign key
         [ForeignKey(nameof(PositionId))]
-        public virtual EmployeeEntity Position { get; set; }
+        public virtual PositionEntity Position { get; set; }
         public string DepartmentId { get; set; }//foreign key
         [ForeignKey(nameof(DepartmentId))]
         public virtual DepartmentEntity Department { get; set; }
