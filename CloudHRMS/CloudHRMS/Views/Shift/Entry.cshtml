@@ -1,7 +1,7 @@
-﻿@* @{
-    ViewData["Title"] = "DailyAttendance";
+﻿﻿@{
+    ViewData["Title"] = "Shift";
 }
-<h3>Daily Attendance Entry</h3>
+<h3>Shift Entry</h3>
 @{
     var info = ViewData["Info"];
 }
@@ -20,39 +20,42 @@
         </div>
     }
 }
-<form action="/dailyattendance/entry" method="post">
+<form action="/shift/entry" method="post">
     <div class="mb-3">
-        <label class="form-label">Attendance Date:</label>
-        <input type="date" class="form-control" name="AttendanceDate" required>
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="Name" required>
     </div>
     <div class="mb-3">
-        <label class="form-label">In Time:</label>
-        <input type="text" class="form-control" name="InTime" required>
+        <label class="form-label">In Time</label>
+        <input type="time" class="form-control" name="InTime" required>
     </div>
     <div class="mb-3">
-        <label class="form-label">Out Time:</label>
-        <input type="text" class="form-control" name="OutTime" required>
+        <label class="form-label">Out Time</label>
+        <input type="time" class="form-control" name="OutTime" required>
     </div>
     <div class="mb-3">
-        <label class="form-label">Employee</label>
-        <select class="form-select" name="EmployeeId">
-            <option selected>Open this select menu</option>
-            @foreach (var employee in ViewBag.Employees)
+        <label class="form-label">Late After</label>
+        <input type="time" class="form-control" name="LateAfter" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Early Out Before</label>
+        <input type="time" class="form-control" name="EarlyOutBefore" required>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">AttendancePolicy</label>
+        <select class="form-select" name="AttendancePolicyId">
+            <option selected>Select AttendancePolicy</option>
+            @foreach (var attendancepolicy in ViewBag.AttendancePolicies)
             {
-                <option value="@employee.Id">@employee.Code</option>
+                <option value="@attendancepolicy.Id">@attendancepolicy.Name</option>
             }
         </select>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Department</label>
-        <select class="form-select" name="DepartmentId">
-            <option selected>Open this select menu</option>
-            @foreach (var department in ViewBag.Departments)
-            {
-                <option value="@department.Id">@department.Code</option>
-            }
-        </select>
-    </div>
+    
+   
+
     <button type="submit" class="btn btn-primary">Entry</button>
-    <a href="/dailyattendance/list" class="btn btn-outline-primary">List</a>
-</form> *@
+    <a href="/shift/list" class="btn btn-outline-primary">List</a>
+</form> 
