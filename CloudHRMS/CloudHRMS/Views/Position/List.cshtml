@@ -29,7 +29,10 @@
             <th scope="col">Code</th>
             <th scope="col">Name</th>
             <th scope="col">Level</th>
-            <th scope="col">Actions</th>
+            @if (User.IsInRole("HR"))
+            {
+                <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -42,10 +45,13 @@
                     <td>@item.Code</td>
                     <td>@item.Name</td>
                     <td>@item.Level</td>
-                    <td>
-                        <a href="/position/edit?id=@item.Id" class="btn btn-success">EDIT</a>
-                        <a href="/position/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
-                    </td>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/position/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                            <a href="/position/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
+                            </td>
+                        }
                 </tr>
                 i++;
             }

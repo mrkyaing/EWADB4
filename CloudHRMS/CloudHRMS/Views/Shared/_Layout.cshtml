@@ -23,93 +23,76 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Position
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="Position" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Position" asp-action="List">List</a></li>
-                            </ul>
-                        </li>       
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Department
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Employee
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Attendance Policy
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="AttendancePolicy" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="AttendancePolicy" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Shift
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="Shift" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Shift" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                ShiftAssign
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="ShiftAssign" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="ShiftAssign" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Daily Attendance
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="DailyAttendance" asp-action="Entry">Entry</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="DailyAttendance" asp-action="List">List</a></li>
-                            </ul>
-                        </li>          
-                         <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Attendance DayEnd
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="AttendanceMaster" asp-action="DayEndProcess">DayEnd Process</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="AttendanceMaster" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown text-dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Payroll
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-controller="Payroll" asp-action="PayrollProcess">Payroll Process</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Payroll" asp-action="List">List</a></li>
-                            </ul>
-                        </li>
-                       
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Position
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Position" asp-action="List">List</a></li>
+                                </ul>
+                            </li>       
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Department
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Employee
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Employee" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Attendance Policy
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AttendancePolicy" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    My Shift Assign
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="ShiftAssign" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    My  Daily Attendance
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="DailyAttendance" asp-action="List">List</a></li>
+                                </ul>
+                            </li>          
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    My Attendance
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AttendanceMaster" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown text-dark">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    My Pay History
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Payroll" asp-action="List">List</a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="nav-item">
                           <partial name="_LoginPartial" />
                         </li>
-
                     </ul>
                 </div>
             </div>
