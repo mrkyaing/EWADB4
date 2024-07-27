@@ -13,12 +13,12 @@
             <td scope="col">AttendanceDate</td>
             <td scope="col">InTime</td>
             <td scope="col">OutTime</td>
-            <td scope="col">EmployeeId</td>
-            <td scope="col">DepartmentId</td>
-            <td scope="col">ShiftId</td>
-            <td scope="col">IsLate</td>
-            <td scope="col">IsEarlyOut</td>
-            <td scope="col">IsLeave</td>
+            <td scope="col">Employee</td>
+            <td scope="col">Department</td>
+            <td scope="col">Shift</td>
+            <td scope="col">Is Late</td>
+            <td scope="col">Is Early Out</td>
+            <td scope="col">Is Leave</td>
             @if (User.IsInRole("HR"))
             {
                 <th scope="col">Actions</th>
@@ -39,9 +39,34 @@
                 <td>@item.EmployeeId</td>
                 <td>@item.DepartmentId</td>
                 <td>@item.ShiftId</td>           
-                <td>@item.IsLate</td>
-                <td>@item.IsEarlyOut</td>
-                <td>@item.IsLeave</td>
+                <td>@if (item.IsLate) {
+                        <span>✔</span>
+                    }
+                    else
+                    {
+                        <span>❌</span>
+                    }
+                </td>
+                <td>
+                    @if (item.IsEarlyOut)
+                    {
+                        <span>✔</span>
+                    }
+                    else
+                    {
+                        <span>❌</span>
+                    }
+                </td>
+                <td>
+                    @if (item.IsEarlyOut)
+                    {
+                        <span>✔</span>
+                    }
+                    else
+                    {
+                        <span>❌</span>
+                    }
+                </td>
                 @if (User.IsInRole("HR"))
                 {
                     <td>

@@ -16,15 +16,23 @@ namespace CloudHRMS.Controllers
         public IActionResult List()
         {
             //mapper.map<source,destination>(dataList);
-            return View(_applicationDbContext.AttendanceMasters.Select(s=>new AttendanceMasterViewModel
-            {
-                Id = s.Id,
-                AttendanceDate = s.AttendanceDate,
-                InTime = s.InTime,
-                OutTime = s.OutTime,
-                IsEarlyOut = s.IsEarlyOut,
-                IsLate =s.IsLate,
-            }).ToList());
+            var attendanceMasters=(from attMaster in _applicationDbContext.AttendanceMasters
+                                                           join e in _applicationDbContext.Employees on attMaster.EmployeeId equals e.Id
+                                                           join d in _applicationDbContext.Departments on  attMaster.DepartmentId equals d.Id
+                                                           join s in _applicationDbContext.Shifts on attMaster.ShiftId equals s.Id
+                                                           select new AttendanceMasterViewModel
+                                                           {
+                                                               Id = attMaster.Id,
+                                                               AttendanceDate = attMaster.AttendanceDate,
+                                                               InTime = attMaster.InTime,
+                                                               OutTime = attMaster.OutTime,
+                                                               IsEarlyOut = attMaster.IsEarlyOut,
+                                                               IsLate = attMaster.IsLate,
+                                                               DepartmentId =d.Code+"/" +d.Name,
+                                                               EmployeeId =e.Code+"/"+e.Name,
+                                                               ShiftId=s.Name
+                                                           }).ToList();
+            return View(attendanceMasters);
         }
         public IActionResult DayEndProcess()
         {
@@ -41,15 +49,15 @@ namespace CloudHRMS.Controllers
                 //Data exchange from view model to data model by using automapper 
                 List<AttendanceMasterEntity> attendanceMasters = new List<AttendanceMasterEntity>();         
                 var DailyAttendancesWithShiftAssignsData = (from d in _applicationDbContext.DailyAttendances
-                            join sa in _applicationDbContext.ShiftAssigns
-                            on d.EmployeeId equals sa.EmployeeId
-                            where sa.EmployeeId == ui.EmployeeId &&
-                                        (ui.AttendanceDate >= sa.FromDate && sa.FromDate <= ui.ToDate)
-                            select new
-                            {
-                                dailyAttendance=d,
-                                shiftAssign=sa
-                            }).ToList();             
+                                                                                                    join sa in _applicationDbContext.ShiftAssigns
+                                                                                                    on d.EmployeeId equals sa.EmployeeId
+                                                                                                    where sa.EmployeeId == ui.EmployeeId &&
+                                                                                                    (ui.AttendanceDate >= sa.FromDate && sa.FromDate <= ui.ToDate)
+                                                                                                    select new
+                                                                                                    {
+                                                                                                        dailyAttendance=d,
+                                                                                                        shiftAssign=sa
+                                                                                                    }).ToList();             
                 foreach(var data in DailyAttendancesWithShiftAssignsData)
                 {
                     ShiftEntity definedShift = _applicationDbContext.Shifts.Where(s => s.Id == data.shiftAssign.ShiftId).SingleOrDefault() ;
