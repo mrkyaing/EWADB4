@@ -19,7 +19,10 @@
             <th scope="col">Out Time</th>
             <th scope="col">Employee</th>
             <th scope="col">Department</th>
-            <th scope="col">Actions</th>
+            @if (User.IsInRole("HR"))
+            {
+                <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -34,11 +37,13 @@
                     <td>@item.OutTime</td>
                     <td>@item.EmployeeInfo</td>
                     <td>@item.DepartmentInfo</td>
-                    
-                    <td>
-                        <a href="/dailyattendance/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/dailyattendance/edit?id=@item.Id" class="btn btn-success">EDIT</a>
                         <a href="/dailyattendance/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');">DELETE</a>
                     </td>
+                    }
                 </tr>
                 i++;
             }

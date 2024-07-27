@@ -63,13 +63,14 @@ namespace UnitTestCloudHRMS.Domain.Position
             //arrange
             IEnumerable<PositionViewModel> expectedResults = new List<PositionViewModel>()
             {
-                new PositionViewModel{Id="xy",Code="SE",Name="SE"}
+                new PositionViewModel{Id="xy1",Code="SE",Name="SE" },
+                 new PositionViewModel{Id="xyx1",Code="SE",Name="SE"}
             };
             
             IEnumerable<PositionEntity> positionEntities = new List<PositionEntity>()
             {
-                new PositionEntity{Id="x1",Code="SE",Name="SE"},
-                new PositionEntity{Id="x2",Code="HR",Name="HR"}
+                new PositionEntity{Id="xy1",Code="SE",Name="SE"},
+                new PositionEntity{Id="xyx1",Code="SE",Name="SE"}
             };
             positionRepositoryMock.Setup(r=>r.GetAll()).Returns(positionEntities);
             unitOfWorkMock.Setup(u=>u.PositionRepository).Returns(() => positionRepositoryMock.Object);

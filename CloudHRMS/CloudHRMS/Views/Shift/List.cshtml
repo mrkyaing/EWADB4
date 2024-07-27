@@ -20,7 +20,10 @@
             <th scope="col">Late After</th>
             <th scope="col">Early Out Before</th>
             <th scope="col">Attendance Policy</th>
-            <th scope="col">Actions</th>
+            @if (User.IsInRole("HR"))
+            {
+                <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -36,10 +39,13 @@
                     <td>@item.LateAfter</td>
                     <td>@item.EarlyOutBefore</td>
                     <td>@item.AttendancePolicyInfo</td>
-                    <td>
-                        <a href="/shift/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/shift/edit?id=@item.Id" class="btn btn-success">EDIT</a>
                         <a href="/shift/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
                     </td>
+                    }
                 </tr>
                 i++;
             }

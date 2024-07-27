@@ -1,5 +1,6 @@
 ﻿using CloudHRMS.Models.ViewModels;
 using CloudHRMS.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
@@ -12,17 +13,13 @@ namespace CloudHRMS.Controllers
         {
             this._departmentService = departmentService;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult List() => View(_departmentService.GetAll());
-
+        [Authorize(Roles = "HR")]
         public IActionResult Edit(string id)
         { 
             return View(_departmentService.GetById(id));       
         }
+        [Authorize(Roles = "HR")]
         public IActionResult Delete(string id)
         {
             try
@@ -37,8 +34,9 @@ namespace CloudHRMS.Controllers
 
             return RedirectToAction("List");
         }
+        [Authorize(Roles = "HR")]
         public IActionResult Entry() => View();
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult Entry(DepartmentViewModel ui)
         {

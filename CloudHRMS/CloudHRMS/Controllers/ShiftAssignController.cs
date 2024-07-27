@@ -1,6 +1,7 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
@@ -12,6 +13,7 @@ namespace CloudHRMS.Controllers
         {
             _dbContext = dbContext;
         }
+        [Authorize(Roles = "HR")]
         public IActionResult Entry()
         {
             bindEmployeeData();
@@ -42,7 +44,7 @@ namespace CloudHRMS.Controllers
 
 
         }
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult Entry(ShiftAssignViewModel ui)
         {
@@ -73,8 +75,6 @@ namespace CloudHRMS.Controllers
             bindShiftData();
             return View();
         }
-
-
         public IActionResult List()
         {
             IList<ShiftAssignViewModel> shiftAssigns = (from s in _dbContext.ShiftAssigns
@@ -94,7 +94,7 @@ namespace CloudHRMS.Controllers
                                         }).ToList();
             return View(shiftAssigns);
         }
-
+        [Authorize(Roles = "HR")]
         public IActionResult Edit(string id)
 
         {
@@ -105,15 +105,14 @@ namespace CloudHRMS.Controllers
                 ShiftId = s.ShiftId,
                 FromDate = s.FromDate,
                 ToDate = s.ToDate,
-               
+
             }).FirstOrDefault();
 
             bindEmployeeData();
             bindShiftData();
             return View(shiftAssignView);
         }
-
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult Update(ShiftAssignViewModel ui)
         {
@@ -141,8 +140,8 @@ namespace CloudHRMS.Controllers
             }
             return RedirectToAction("List");
         }
-
-         public IActionResult Delete(string id)
+        [Authorize(Roles = "HR")]
+        public IActionResult Delete(string id)
          {
              try
              {

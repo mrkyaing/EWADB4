@@ -18,7 +18,10 @@
             <th scope="col">Number of Early Out Time</th>
             <th scope="col">Deduction In Amount</th>
             <th scope="col">Deduction In Day</th>
-            <th scope="col">Actions</th>
+            @if (User.IsInRole("HR"))
+            {
+                <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -33,10 +36,13 @@
                     <td>@item.NumberOfEarlyOutTime</td>
                     <td>@item.DeductionInAmount</td>
                     <td>@item.DeductionInDay</td>
-                    <td>
-                        <a href="/attendancepolicy/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/attendancepolicy/edit?id=@item.Id" class="btn btn-success">EDIT</a>
                         <a href="/attendancepolicy/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');">DELETE</a>
                     </td>
+                    }
                 </tr>
                 i++;
             }

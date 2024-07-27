@@ -1,17 +1,24 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 namespace CloudHRMS.Controllers
 {
     public class EmployeeController : Controller
     {      
         private readonly CloudHRMSApplicationDbContext _dbContext;
+        private readonly UserManager<IdentityUser> _userManager;
+
         //constcutror injection for ApplicationDbContext
-        public EmployeeController(CloudHRMSApplicationDbContext dbContext)
+        public EmployeeController(CloudHRMSApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
+        [Authorize(Roles = "HR")]
         public IActionResult Entry()
         {
             bindPositionData();
@@ -40,35 +47,42 @@ namespace CloudHRMS.Controllers
            }).ToList();
             ViewBag.Positions = positions;//passing the all of position to the UI
         }
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
-        public IActionResult Entry(EmployeeViewModel ui)
+        public async Task<IActionResult> EntryAsync(EmployeeViewModel ui)
         {
             try
             {
-                //Data Exchange from view Model to Entity
-                //ViewModels to Data Models 
-                EmployeeEntity employeeEntity = new EmployeeEntity()
+                var user = new IdentityUser { UserName = ui.Email, Email = ui.Email };
+                var result = await _userManager.CreateAsync(user, "CloudHRMS@prodev@123");
+                if (result.Succeeded)
                 {
-                    Id = Guid.NewGuid().ToString(),//new random 36 char string ...
-                   Code=ui.Code,
-                   Name=ui.Name,
-                   Email=ui.Email,
-                   Phone=ui.Phone,
-                   Gender=ui.Gender, 
-                   DepartmentId=ui.DepartmentId,//adding the ralatiosnip key -departmentId
-                   PositionId=ui.PositionId,//adding the ralatiosnip key - positionId
-                    DOR =ui.DOR,
-                   DOE=ui.DOE,
-                   DOB=ui.DOB,
-                   Address=ui.Address,
-                   BasicSalary=ui.BasicSalary,
-                    CreatedAt = DateTime.Now//set the current date time 
-                };
-                _dbContext.Employees.Add(employeeEntity);//add the entity to the dbContext.
-                _dbContext.SaveChanges();//saving the record to the database.
-                ViewData["Info"] = "Successfully save the recrod to the system.";
-                ViewData["Status"] = true;
+                    await _userManager.AddToRoleAsync(user, "Employee");
+                    //Data Exchange from view Model to Entity
+                    //ViewModels to Data Models 
+                    EmployeeEntity employeeEntity = new EmployeeEntity()
+                    {
+                        Id = Guid.NewGuid().ToString(),//new random 36 char string ...
+                        Code = ui.Code,
+                        Name = ui.Name,
+                        Email = ui.Email,
+                        Phone = ui.Phone,
+                        Gender = ui.Gender,
+                        DepartmentId = ui.DepartmentId,//adding the ralatiosnip key -departmentId
+                        PositionId = ui.PositionId,//adding the ralatiosnip key - positionId
+                        DOR = ui.DOR,
+                        DOE = ui.DOE,
+                        DOB = ui.DOB,
+                        Address = ui.Address,
+                        BasicSalary = ui.BasicSalary,
+                        CreatedAt = DateTime.Now,//set the current date time 
+                        UserId = user.Id
+                    };
+                    _dbContext.Employees.Add(employeeEntity);//add the entity to the dbContext.
+                    _dbContext.SaveChanges();//saving the record to the database.
+                    ViewData["Info"] = "Successfully save the recrod to the system.";
+                    ViewData["Status"] = true;
+                }
             }
             catch (Exception e)
             {
@@ -80,16 +94,17 @@ namespace CloudHRMS.Controllers
             bindDepartmentData();
             return View();
         }
-        public IActionResult Index()
+        public  IActionResult Index()
         {
             //DTO >>Data Transfer Object in here from DataModels to ViewModels
             IList<EmployeeViewModel> employees=(from e in _dbContext.Employees
-                                                join d in _dbContext.Departments
-                                                on e.DepartmentId equals d.Id
-                                                join p in _dbContext.Positions
-                                                on e.PositionId equals p.Id
+                                                                                        join d in _dbContext.Departments
+                                                                                        on e.DepartmentId equals d.Id
+                                                                                        join p in _dbContext.Positions
+                                                                                        on e.PositionId equals p.Id
                                                 where !e.IsInActive && !d.IsInActive && !p.IsInActive 
                                                     select new EmployeeViewModel{
+                                                    UserId=e.UserId,
                                                     Id = e.Id,
                                                     Code = e.Code,
                                                     Name = e.Name,
@@ -105,9 +120,15 @@ namespace CloudHRMS.Controllers
                                                     DepartmentInfo=d.Code+"/"+d.Name,
                                                     PositionInfo =p.Code+"/"+p.Name
                                                 }).ToList();
+            if (!User.IsInRole("HR"))
+            {
+                var loginedUser =  _userManager.FindByNameAsync(User.Identity.Name).Result;
+                employees= employees.Where(u=>u.UserId==loginedUser.Id).ToList();
+            }
             return View(employees);//passing the position view models to the views
         }
-               public IActionResult Edit(string id)
+        [Authorize(Roles = "HR")]
+        public IActionResult Edit(string id)
                 {
                     EmployeeViewModel employeeView = _dbContext.Employees.Where(w => w.Id == id && !w.IsInActive).Select(s => new EmployeeViewModel
                     {
@@ -132,7 +153,8 @@ namespace CloudHRMS.Controllers
                      bindPositionData();
                     return View(employeeView);
                 }
-                [HttpPost]
+        [Authorize(Roles = "HR")]
+        [HttpPost]
                 public IActionResult Update(EmployeeViewModel ui)
                 {
                     try
@@ -169,7 +191,7 @@ namespace CloudHRMS.Controllers
                     }
                     return RedirectToAction("index");//when update success go to List View
                 }
-
+        [Authorize(Roles = "HR")]
         public IActionResult Delete(string id)
         {
             try

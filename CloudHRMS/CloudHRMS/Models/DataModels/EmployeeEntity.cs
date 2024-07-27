@@ -20,5 +20,6 @@ namespace CloudHRMS.Models.Entities
         public string DepartmentId { get; set; }//foreign key
         [ForeignKey(nameof(DepartmentId))]
         public virtual DepartmentEntity Department { get; set; }
+        public string? UserId { get; set; }
     }
 }

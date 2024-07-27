@@ -18,7 +18,10 @@
             <th scope="col">Shift</th>
             <th scope="col">From Date</th>
             <th scope="col">To Date</th>
-            <th scope="col">Actions</th>
+            @if (User.IsInRole("HR"))
+            {
+                <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -32,10 +35,13 @@
                     <td>@item.ShiftInfo</td>
                     <td>@item.FromDate.ToString("yyyy-MM-dd")</td>
                     <td>@item.ToDate.ToString("yyyy-MM-dd")</td>
-                    <td>
-                        <a href="/shiftassign/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/shiftassign/edit?id=@item.Id" class="btn btn-success">EDIT</a>
                         <a href="/shiftassign/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
                     </td>
+                    }
                 </tr>
                 i++;
             }
@@ -46,8 +52,5 @@
                 There is no data!!
             </div>
         }
-
-
-
     </tbody>
 </table>

@@ -1,10 +1,12 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
 {
+    [Authorize(Roles = "HR")]
     public class ShiftController : Controller
     {
         private readonly CloudHRMSApplicationDbContext _dbContext;

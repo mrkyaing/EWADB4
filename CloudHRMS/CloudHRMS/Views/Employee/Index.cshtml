@@ -58,12 +58,15 @@
                     <td>@item.Address</td>
                     <td>@item.PositionInfo</td>
                     <td>@item.DepartmentInfo</td>
-                    <td>
-                        <a href="/employee/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                    @if (User.IsInRole("HR"))
+                    {
+                        <td>
+                            <a href="/employee/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                        </td>
+                        <td>
+                            <a href="/employee/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
                     </td>
-                    <td>
-                        <a href="/employee/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
-                    </td>
+                    }
                 </tr>
                 i++;
             }

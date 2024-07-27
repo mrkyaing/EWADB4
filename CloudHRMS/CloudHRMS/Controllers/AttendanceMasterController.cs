@@ -1,6 +1,7 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
@@ -34,6 +35,7 @@ namespace CloudHRMS.Controllers
                                                            }).ToList();
             return View(attendanceMasters);
         }
+        [Authorize(Roles = "HR")]
         public IActionResult DayEndProcess()
         {
             ViewBag.Shifts =(_applicationDbContext.Shifts.ToList());
@@ -41,6 +43,7 @@ namespace CloudHRMS.Controllers
             ViewBag.Departments = (_applicationDbContext.Departments.ToList());
             return View();
         }
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult DayEndProcess(AttendanceMasterViewModel ui)
         {

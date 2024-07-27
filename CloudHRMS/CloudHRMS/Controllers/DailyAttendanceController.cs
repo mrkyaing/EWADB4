@@ -1,6 +1,7 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace CloudHRMS.Controllers
             _dbContext = dbContext;
         }
 
-
+        [Authorize(Roles = "HR")]
         public IActionResult Entry()
         {
             bindEmployeeData();
@@ -44,7 +45,7 @@ namespace CloudHRMS.Controllers
             ViewBag.Employees = positions;
 
         }
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult Entry(DailyAttendanceViewModel dailyAttendanceViewModel)
         {
@@ -74,7 +75,6 @@ namespace CloudHRMS.Controllers
             bindDepartmentData();
             return View();
         }
-
         public IActionResult List()
         {
             IList<DailyAttendanceViewModel> dailyAttendances = (from da in _dbContext.DailyAttendances
@@ -95,7 +95,7 @@ namespace CloudHRMS.Controllers
 
             return View(dailyAttendances);
         }
-
+        [Authorize(Roles = "HR")]
         public IActionResult Edit(string id)
         {
             DailyAttendanceViewModel dailyAttendanceView = _dbContext.DailyAttendances.Where(w => w.Id == id && !w.IsInActive).Select(s => new DailyAttendanceViewModel
@@ -113,7 +113,7 @@ namespace CloudHRMS.Controllers
             bindEmployeeData();
             return View(dailyAttendanceView);
         }
-
+        [Authorize(Roles = "HR")]
         [HttpPost]
         public IActionResult Update(DailyAttendanceViewModel dailyAttendanceViewModel)
         {
@@ -142,7 +142,7 @@ namespace CloudHRMS.Controllers
             }
             return RedirectToAction("List");
         }
-
+        [Authorize(Roles = "HR")]
         public IActionResult Delete(string id)
         {
             try
