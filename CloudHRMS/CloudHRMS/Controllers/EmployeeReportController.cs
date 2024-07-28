@@ -4,14 +4,12 @@ using CloudHRMS.Models.ViewModels;
 using CloudHRMS.Reportings;
 using CloudHRMS.Utilties;
 using Microsoft.AspNetCore.Mvc;
-
 namespace CloudHRMS.Controllers
 {
     public class EmployeeReportController : Controller
     {
         private readonly CloudHRMSApplicationDbContext _cloudHRMSApplicationDbContext;
         private readonly IReporting _reporting;
-
         public EmployeeReportController(CloudHRMSApplicationDbContext cloudHRMSApplicationDbContext,IReporting reporting)
         {
             this._cloudHRMSApplicationDbContext = cloudHRMSApplicationDbContext;
@@ -44,7 +42,6 @@ namespace CloudHRMS.Controllers
                 ViewData["Status"] = false;
                 return View();
             }
-
         }
         private void bindEmployeeData()
         {
