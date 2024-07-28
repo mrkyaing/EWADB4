@@ -1,4 +1,5 @@
 using CloudHRMS.DAO;
+using CloudHRMS.Reportings;
 using CloudHRMS.Services;
 using CloudHRMS.UnitOfWorks;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<CloudHRMSApplicationDbContext>(o =>o.UseSqlServer(
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();//register the Unit Of Work for all repositories for it.
 builder.Services.AddTransient<IPositionService,PositionService>();// register the Position domain for CRUD process
 builder.Services.AddTransient<IDepartmentService, DepartmentService>();// register the Department domain for CRUD process
+builder.Services.AddScoped<IReporting, Reporting>();
 builder.Services.AddRazorPages();//for Identity pages
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<CloudHRMSApplicationDbContext>()

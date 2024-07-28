@@ -43,7 +43,6 @@ namespace CloudHRMS.Controllers
                  Code = s.Code + "/" + s.Name
              }).ToList();
             ViewBag.Employees = positions;
-
         }
         [Authorize(Roles = "HR")]
         [HttpPost]

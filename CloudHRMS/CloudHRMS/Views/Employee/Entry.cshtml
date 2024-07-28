@@ -60,7 +60,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">DOB</label>
-        <input type="date" class="form-control" name="DOB" required>
+        <input type="date" class="form-control" name="DOB" required min="1990-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")">
     </div>
     <div class="mb-3">
         <label class="form-label">DOE</label>

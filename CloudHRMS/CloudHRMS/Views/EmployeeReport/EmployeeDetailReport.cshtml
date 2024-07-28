@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Employee Detail Report";
+}
+<h3>Employee Detail Report</h3>
+@{
+    var info = ViewData["Info"];
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+<form action="/employeeReport/EmployeeDetailReport" method="post">
+    <div class="mb-3">
+        <label class="form-label">From Employee Code </label>
+        <select class="form-select" name="FromEmployeeCode">
+            <option selected>Open this select menu</option>
+            @foreach (var employee in ViewBag.Employees)
+            {
+                <option value="@employee.Code">@employee.Code</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">To Employee Code </label>
+        <select class="form-select" name="ToEmployeeCode">
+            <option selected>Open this select menu</option>
+            @foreach (var employee in ViewBag.Employees)
+            {
+                <option value="@employee.Code">@employee.Code</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Department</label>
+        <select class="form-select" name="DepartmentId">
+            <option selected>Open this select menu</option>
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department.Id">@department.Code</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Download</button>
+    <button type="reset" class="btn btn-primary">Cancel</button>
+</form>
