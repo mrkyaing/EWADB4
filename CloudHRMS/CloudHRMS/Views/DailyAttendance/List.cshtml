@@ -7,7 +7,7 @@
         @TempData["info"]
     </div>
 }
-<table class="table">
+<table class="table table-bordered table-striped" id="DailyAttendanceTable">
     <thead>
         @{
             int i = 1;
@@ -56,3 +56,13 @@
         }
     </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DailyAttendanceTable").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#DailyAttendanceTable_wrapper .col-md-6:eq(0)');
+    });
+</script>

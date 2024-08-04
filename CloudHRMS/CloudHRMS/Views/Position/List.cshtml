@@ -1,66 +1,89 @@
 ﻿@model IEnumerable<PositionViewModel>
-<h3>Position List Information</h3>
-<a href="/position/entry" class="btn btn-outline-primary">Entry</a>
+    <h3>Position List Information</h3>
+    <a href="/position/entry" class="btn btn-outline-primary">Entry</a>
 @{
     var info = TempData["Info"];
+    ViewData["Title"] = "Position";
 }
-@if (info != null)
-{
-    if (Convert.ToBoolean(TempData["Status"]))
+    @if (info != null)
     {
-        <div class="alert alert-success" role="alert">
-            @info
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-danger" role="alert">
-            @info
-        </div>
-    }
-}
-<table class="table">
-    <thead>
-        @{
-            int i = 1;
-        }
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Code</th>
-            <th scope="col">Name</th>
-            <th scope="col">Level</th>
-            @if (User.IsInRole("HR"))
-            {
-                <th scope="col">Actions</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Any())
+        if (Convert.ToBoolean(TempData["Status"]))
         {
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">@i</th>
-                    <td>@item.Code</td>
-                    <td>@item.Name</td>
-                    <td>@item.Level</td>
-                    @if (User.IsInRole("HR"))
-                    {
-                        <td>
-                            <a href="/position/edit?id=@item.Id" class="btn btn-success">EDIT</a>
-                            <a href="/position/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this recrod?');">DELETE</a>
-                            </td>
-                        }
-                </tr>
-                i++;
-            }
+            <div class="alert alert-success" role="alert">
+                @info
+            </div>
         }
         else
         {
             <div class="alert alert-danger" role="alert">
-               There is no data!!
+                @info
             </div>
         }
-    </tbody>
+    }
+<table class="table table-bordered table-striped" id="positionTable">
+        <thead>
+            @{
+                int i = 1;
+            }
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                @if (User.IsInRole("HR"))
+                {
+                    <th scope="col">Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@item.Code</td>
+                        <td>@item.Name</td>
+                        <td>@item.Level</td>
+                        @if (User.IsInRole("HR"))
+                        {
+                            <td>
+                                <a href="/position/edit?id=@item.Id" class="btn btn-success">EDIT</a>
+                                <a href="/position/delete?id=@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?');">DELETE</a>
+                            </td>
+                        }
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    There is no data!!
+                </div>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                @if (User.IsInRole("HR"))
+                {
+                    <th scope="col">Actions</th>
+                }
+            </tr>
+        </tfoot>
 </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("#positionTable").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#positionTable_wrapper .col-md-6:eq(0)');
+        });
+    </script>

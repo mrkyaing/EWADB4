@@ -6,7 +6,7 @@
         @TempData["info"]
     </div>
 }
-<table class="table table-hover" id="PayrollTable">
+<table class="table table-bordered table-striped" id="PayrollTable">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -62,8 +62,13 @@
         }
     </tbody>
 </table>
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#PayrollTable').DataTable();
+        $("#PayrollTable").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#PayrollTable_wrapper .col-md-6:eq(0)');
     });
 </script>
