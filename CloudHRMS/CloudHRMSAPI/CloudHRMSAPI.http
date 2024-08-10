@@ -1,0 +1,6 @@
+@CloudHRMSAPI_HostAddress = http://localhost:5205
+
+GET {{CloudHRMSAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
