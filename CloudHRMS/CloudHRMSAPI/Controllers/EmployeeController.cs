@@ -1,5 +1,6 @@
 ﻿using CloudHRMSAPI.DAO;
 using CloudHRMSAPI.Models;
+using CloudHRMSAPI.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -64,11 +65,39 @@ namespace CloudHRMSAPI.Controllers
             return employee;
         }
 
-        //// POST api/<EmployeeController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST api/<EmployeeController>
+        [HttpPost]
+        public IActionResult Post([FromBody] EmployeeModel employeeModel)
+        {
+            try
+            {
+                EmployeeEntity employeeEntity = new EmployeeEntity()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Code = employeeModel.Code,
+                    Name = employeeModel.Name,
+                    Email = employeeModel.Email,
+                    Phone = employeeModel.Phone,
+                    Gender = employeeModel.Gender,
+                    DepartmentId = employeeModel.DepartmentId,//adding the ralatiosnip key -departmentId
+                    PositionId = employeeModel.PositionId,//adding the ralatiosnip key - positionId
+                    DOR = employeeModel.DOR,
+                    DOE = employeeModel.DOE,
+                    DOB = employeeModel.DOB,
+                    Address = employeeModel.Address,
+                    BasicSalary = employeeModel.BasicSalary,
+                    CreatedAt = DateTime.Now,//set the current date time 
+                    UserId = employeeModel.UserId
+                };
+                _context.Employees.Add(employeeEntity);
+                _context.SaveChanges();
+                return Ok("Success");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
 
         //// PUT api/<EmployeeController>/5
         //[HttpPut("{id}")]

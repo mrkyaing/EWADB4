@@ -13,8 +13,9 @@
         public decimal BasicSalary { get; set; }
         public string? Phone { get; set; }
         public string PositionId { get; set; }
-        public string PositionInfo { get; set; }
+        public string? PositionInfo { get; set; }
         public string DepartmentId { get; set; }
-        public string DepartmentInfo { get; set; }
+        public string? DepartmentInfo { get; set; }
+        public string UserId { get; set; }
     }
 }

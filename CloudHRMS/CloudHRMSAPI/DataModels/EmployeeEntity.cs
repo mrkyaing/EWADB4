@@ -16,5 +16,7 @@ namespace CloudHRMSAPI.Models.Entities
         public decimal BasicSalary { get; set; }
         public string? Phone { get; set; }
         public string? UserId { get; set; }
+        public string PositionId { get; set; }//foreign key
+        public string DepartmentId { get; set; }//foreign key
     }
 }
