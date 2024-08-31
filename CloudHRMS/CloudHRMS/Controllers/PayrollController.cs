@@ -1,6 +1,7 @@
 ﻿using CloudHRMS.DAO;
 using CloudHRMS.Models.Entities;
 using CloudHRMS.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudHRMS.Controllers
@@ -47,6 +48,7 @@ namespace CloudHRMS.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "HR")]
         public IActionResult PayrollProcess(PayrollProcessViewModel ui)
         {
             try
@@ -54,7 +56,7 @@ namespace CloudHRMS.Controllers
                 List<AttendanceMasterCalculatedData> attendanceMasterCalculatedData = new List<AttendanceMasterCalculatedData>();
                 if (ui.DepartmentId != null)
                 {
-                    //HR,01-03-2024 to 31-03-2024 
+                    //HR,01-03-2024 to 31-03-2024
                     List<AttendanceMasterEntity> attendances = _applicationDbContext.AttendanceMasters.Where(w => w.DepartmentId == ui.DepartmentId && (w.AttendanceDate <= ui.ToDate)).OrderBy(o => o.AttendanceDate).ToList();
                     List<AttendanceMasterEntity> distinctEmployees = attendances.DistinctBy(e => e.EmployeeId).ToList();
                     foreach (AttendanceMasterEntity distinctEmployee in distinctEmployees)
@@ -118,7 +120,7 @@ namespace CloudHRMS.Controllers
                                                            join s in _applicationDbContext.Shifts
                                                            on ap.Id equals s.AttendancePolicyId
                                                            join sa in _applicationDbContext.ShiftAssigns
-                                                           on s.Id equals sa.ShiftId 
+                                                           on s.Id equals sa.ShiftId
                                                             where sa.EmployeeId == EmployeeId
                                                             select ap).FirstOrDefault();
             if (attendancePolicy!=null)

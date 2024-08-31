@@ -1,4 +1,5 @@
 using CloudHRMS.Models;
+using CloudHRMS.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -22,6 +23,5 @@ namespace CloudHRMS.Controllers
         {
             return View();
         }
-    
     }
 }

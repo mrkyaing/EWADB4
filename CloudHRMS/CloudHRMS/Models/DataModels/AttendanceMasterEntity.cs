@@ -8,13 +8,12 @@ namespace CloudHRMS.Models.Entities
         public DateTime AttendanceDate { get; set; }
         public TimeSpan InTime { get; set; }
         public TimeSpan OutTime { get; set; }
-       
-        //Has-A Relationship between Employee and AttendanceMaster  
+        //Has-A Relationship between Employee and AttendanceMaster
         public string EmployeeId { get; set; }
         [ForeignKey(nameof(EmployeeId))]
         public virtual EmployeeEntity Employee { get; set; }
 
-        //Has-A Relationship between Employee and Department  
+        //Has-A Relationship between Employee and Department
         public string DepartmentId { get; set; }
         [ForeignKey(nameof(DepartmentId))]
         public virtual  DepartmentEntity Department { get; set; }
